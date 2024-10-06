@@ -10,7 +10,7 @@ class BaseConfig(object):
     DEPLOY_ENV = getenv("DEPLOY_ENV", default="Development")
     LOGS_LEVEL = logging.INFO
 
-   JWT_CACHE_EXPIRATION_SECONDS = getenv("JWT_CACHE_EXPIRATION_SECONDS")
+    JWT_CACHE_EXPIRATION_SECONDS = getenv("JWT_CACHE_EXPIRATION_SECONDS")
 
 
 class DevelopmentConfig(BaseConfig):
