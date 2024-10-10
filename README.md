@@ -30,7 +30,7 @@ To run the project locally, we need to follow some steps:
  - Create the database tables running the migration command inside the src/api dir: `flask db upgrade`
  - Run the project locally with `flask run`
  - If you want to run using Docker, run the command in the project root dir `docker-compose up`. It will build and start an image of the project and a Postgres as well. Make sure you don't have another postgres instance running in the port 5342.
-- to run the unit tests and check the coverage, run the command in root dir `make test`
+- to run the unit tests and check the coverage, run the command in root dir `make coverage`
 
 ## Endpoints
 
