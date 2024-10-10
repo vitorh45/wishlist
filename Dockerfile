@@ -1,44 +1,24 @@
+FROM python:3.11-slim-bullseye
 
 # LABELS
 LABEL maintainer="Vitor Campos <vitorh45@gmail.com>"
 LABEL application="wishlist"
-LABEL repository="wishilist.git"
+LABEL repository="wishlist.git"
 
 # Copy project main folder
-COPY src/app src/app
-COPY src/migrations src/migrations
-COPY src/wsgi.py src/wsgi.py
-
-# Testing stage
-FROM base AS testing
-
-# Install testing packages (customize according to this application)
-# Note: Do not put any lib here except for testing.
-#       These libs will only be installed in the test container
-RUN pip install coverage freezegun mock pytest pytest-cov pytest-mock requests-mock mixer moto==4.1.9 --no-cache-dir
-
-# Run tests
-COPY src/tests src/tests
+COPY src/api api
 COPY src/migrations migrations
+COPY src/wsgi.py wsgi.py
 
-ENV WISHLIST_DEPLOY_ENV='Testing'
+COPY src/dependencies/requirements.txt requirements.txt
 
-RUN coverage run -m pytest src/tests/ -vvs --junitxml=/report.xml
-RUN coverage xml -o /coverage.xml -i
+RUN apt-get update && apt-get install -qq -y libmariadb-dev libmariadb-dev-compat libpq-dev libssl-dev build-essential openssh-client libcurl4-openssl-dev
+RUN pip install -r requirements.txt
 
-# Final stage
-FROM base AS final
-
-RUN mv src/app app
-RUN mv src/migrations migrations
-RUN mv src/wsgi.py wsgi.py
-
-COPY --from=testing /coverage.xml /
-COPY --from=testing /report.xml /
-
-RUN mkdir -p app
+RUN ls
+COPY uwsgi.ini uwsgi.ini
 
 ## insert custom codes from application here
 
 EXPOSE 5000
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["uwsgi", "--ini", "./uwsgi.ini", "--enable-threads", "--single-interpreter", "--gevent", "100"]

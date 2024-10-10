@@ -10,4 +10,4 @@ test: clean
 	pytest src/tests/ -s -v
 
 coverage: clean
-	pytest -s -v --rootdir=src/tests --cov=src/app --cov-branch --cov-report=term --cov-report=html src/tests/
+	pytest -s -v --rootdir=src/tests --cov=src/api --cov-branch --cov-report=term --cov-report=html src/tests/
