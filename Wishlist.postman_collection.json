@@ -21,8 +21,29 @@
 				{
 					"name": "Get by id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/products<product_id>",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products<product_id>"
+							]
+						}
 					},
 					"response": []
 				}
@@ -62,8 +83,30 @@
 				{
 					"name": "Get by id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/wishlists/<wishlist_id>",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wishlists",
+								"<wishlist_id>"
+							]
+						}
 					},
 					"response": []
 				},
@@ -84,7 +127,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"product_id\": \"7c35dad8-8f89-44e1-8c26-94e1ccbf14e6\"\n}",
+							"raw": "{\n    \"product_id\": \"62a6c3ce-1f0e-45c8-8d05-e4d30281fa6c\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -92,15 +135,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/wishlist/b673fe1d-ba82-48c5-95fb-4b917807b89a",
+							"raw": "{{base_url}}/api/v1/wishlists/<wishlist_id>",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"wishlist",
-								"b673fe1d-ba82-48c5-95fb-4b917807b89a"
+								"wishlists",
+								"<wishlist_id>"
 							]
 						}
 					},
@@ -122,25 +165,38 @@
 									"    pm.response.to.have.status(200);",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/info?id=1",
+							"raw": "{{base_url}}/api/v1/clients?email=<email_value>",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"info"
+								"api",
+								"v1",
+								"clients"
 							],
 							"query": [
 								{
-									"key": "id",
-									"value": "1"
+									"key": "email",
+									"value": "<email_value>"
 								}
 							]
 						},
@@ -207,11 +263,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+							"raw": "{\n\t\"name\": \"John Wick 123321\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -219,18 +285,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/v1/clients?id=1",
+							"raw": "{{base_url}}/api/v1/clients?email=<email_value>",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
+								"api",
 								"v1",
 								"clients"
 							],
 							"query": [
 								{
-									"key": "id",
-									"value": "1"
+									"key": "email",
+									"value": "<email_value>"
 								}
 							]
 						},
@@ -250,11 +317,22 @@
 									"});",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -267,17 +345,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/info?id=1",
+							"raw": "{{base_url}}/api/v1/clients?email=<email_value>",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"info"
+								"api",
+								"v1",
+								"clients"
 							],
 							"query": [
 								{
-									"key": "id",
-									"value": "1"
+									"key": "email",
+									"value": "<email_value>"
 								}
 							]
 						},
