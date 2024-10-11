@@ -20,8 +20,8 @@ from api.presentation.schemas import (
     update_client_model
 )
 
-from .api import DOC, VERSION
-
+VERSION = "0.0.1"
+DOC = "Wishlist API"
 
 blueprint = Blueprint("clients", __name__, url_prefix="/api/v1/clients")
 
@@ -37,6 +37,7 @@ ns = api.namespace("", description=DOC)
 ns.add_model(create_client_model.name, create_client_model)
 ns.add_model(client_response_model.name, client_response_model)
 ns.add_model(generic_response_model.name, generic_response_model)
+ns.add_model(update_client_model.name, update_client_model)
 
 
 @ns.route("")

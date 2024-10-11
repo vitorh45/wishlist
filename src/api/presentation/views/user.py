@@ -35,7 +35,7 @@ ns.add_model(login_response_model.name, login_response_model)
 
 @ns.route("/login")
 class UserLogin(Resource):
-    # @ns.expect(login_model, validate=True)
+    @ns.expect(login_model, validate=True)
     @ns.response(200, "OK", login_response_model)
     def post(self) -> tuple[dict, int]:
         mapping = UserLoginRequestMapping(payload=request.json)

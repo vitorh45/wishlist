@@ -16,8 +16,9 @@ from api.presentation.schemas import (
     product_query_args_parser
 )
 
-from .api import DOC, VERSION
 
+VERSION = "0.0.1"
+DOC = "Wishlist API"
 
 blueprint = Blueprint("products", __name__, url_prefix="/api/v1/products")
 

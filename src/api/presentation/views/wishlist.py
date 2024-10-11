@@ -22,8 +22,9 @@ from api.presentation.schemas import (
     generic_response_model
 )
 
-from .api import DOC, VERSION
 
+VERSION = "0.0.1"
+DOC = "Wishlist API"
 
 blueprint = Blueprint("wishlist", __name__, url_prefix="/api/v1/wishlists")
 
